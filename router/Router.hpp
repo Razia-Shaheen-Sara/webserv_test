@@ -1,7 +1,38 @@
 #pragma once
 #include "RouteDecision.hpp"
-#include "ServerConfig.hpp"
-#include "Http.hpp"
+
+// ServerConfig.hpp (temporary)
+#include <string>
+#include <vector>
+
+struct LocationConfig
+{
+    std::string path;
+    std::string root;
+    std::string index;
+    bool autoindex;
+    std::string uploadPath;
+    std::string cgiPass;
+    std::vector<std::string> methods;
+    int redirectCode;
+    std::string redirectUrl;
+};
+
+
+//temporary
+struct ServerConfig
+{
+    std::string root;
+    std::string index;
+    std::vector<LocationConfig> locations;
+};
+
+//temporary
+struct HttpRequest
+{
+    std::string method;  // "GET", "POST"
+    std::string path;    // "/images/cat.jpg"
+};
 
 class Router 
 {

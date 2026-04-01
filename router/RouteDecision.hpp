@@ -2,32 +2,43 @@
 #include <string>
 #include <vector>
 
-// NOTE: Output of Router: tells server *what* to do with a request.
 struct RouteDecision 
 {
-    std::string              root;          // which folder to serve from e.g. "./www"
-    std::string              index;         // default file e.g. "index.html"
-    std::string              fullPath;
-    
-    bool                     autoindex;     // show directory listing? true/false
-    
-    std::string              uploadPath;    // where to save uploaded files
-    std::string              cgiPass;       // path to interpreter e.g. "/usr/bin/python3"
+    std::string root;      
+    // DEFAULT: used only if config not loaded
+    // TODO: value should come from server/location config
 
-    std::vector<std::string> methods;       // allowed methods e.g. ["GET", "POST"]
-    
-    int                      redirectCode;  // 0 = no redirect, 301 = moved
-    std::string              redirectUrl;   // where to redirect to
+    std::string index;     
+    // DEFAULT fallback
+    // TODO: override from config (location > server)
 
-    // Constructor — safe defaults so nothing is garbage
+    std::string fullPath;
+    // FINAL VALUE: computed by Router (keep this, not from config)
+
+    bool autoindex;        
+    // DEFAULT false
+    // TODO: set from config
+
+    std::string uploadPath;
+    // TODO: must come from config (no real default)
+
+    std::string cgiPass;   
+    // TODO: must come from config (no real default)
+
+    std::vector<std::string> methods;
+    // TODO: fill from config (GET, POST, DELETE...)
+
+    int redirectCode;      
+    std::string redirectUrl;
+    // TODO: set only if config has redirect
+
     RouteDecision()
-        : root("./www")
-        , index("index.html")
-        , autoindex(false)
-        , redirectCode(0)
+        : root("./www")          // TODO: remove/override after config
+        , index("index.html")    // TODO: remove/override after config
+        , autoindex(false)       // TODO: override from config
+        , redirectCode(0)        // OK default (no redirect)
     {}
 };
-
 
 //Placeholder from before
 // #pragma once
