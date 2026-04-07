@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+// Comes from MY config parser (.conf file)
 struct LocationConfig
 {
     std::string path;
@@ -19,7 +20,7 @@ struct LocationConfig
 };
 
 
-//temporary
+// Comes from MY config parser (.conf file)
 struct ServerConfig
 {
     std::string root;
@@ -27,7 +28,7 @@ struct ServerConfig
     std::vector<LocationConfig> locations;
 };
 
-//temporary
+//temporary--will come from http request parsing
 struct HttpRequest
 {
     std::string method;  // "GET", "POST"
@@ -37,13 +38,13 @@ struct HttpRequest
 class Router 
 {
    
-  public:
-      Router() : _config(nullptr) {}
-      Router(const ServerConfig& config);
+    private:
+      const ServerConfig* servConfig;
+    public:
+      Router() : servConfig(nullptr) {}
+      Router(const ServerConfig& servInput);
       RouteDecision route(const HttpRequest& req) const;
 
-  private:
-      const ServerConfig* _config;
 };
 
 

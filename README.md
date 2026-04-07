@@ -1,3 +1,7 @@
+##Webserv:
+
+webserv project is a "local" program that simulates a web server using files on local computer
+
 ##Learning steps:
 Step 1 (must)
 HTTP basics (very short)
