@@ -15,6 +15,7 @@ struct RouteDecision
     std::vector<std::string> methods;      // allowed methods (empty = allow all)
     int                      redirectCode; // 0 = no redirect, 301/302 etc = redirect
     std::string              redirectUrl;  // target URL for redirect (empty if no redirect)
+    std::string              locationPath; // the matched location's path, e.g. "/images"
 
     RouteDecision()
         : root("./www")

@@ -2,6 +2,7 @@
 #include "RouteDecision.hpp"
 #include <string>
 #include <vector>
+#include "Http.hpp"
 
 // ── Config structs (will be replaced by Person 2's parser output) ──
 struct LocationConfig
@@ -28,15 +29,6 @@ struct ServerConfig
     std::string              index;
     std::vector<LocationConfig> locations;
 };
-
-// ── HttpRequest stub (will be replaced by Person 2's real struct) ──
-struct HttpRequest
-{
-    std::string method;  // "GET", "POST", "DELETE"
-    std::string path;    // "/images/cat.jpg"
-    std::string body;    // request body (for POST/upload)
-};
-
 
 class Router
 {

@@ -34,7 +34,8 @@ RouteDecision Router::route(const HttpRequest& req) const
         // uri must start with locPath AND the next character (if any) must be '/'
         // (or there is no next character — exact match).
         bool prefixMatch = uri.compare(0, locPath.size(), locPath) == 0;
-        bool boundaryOk  = (uri.size() == locPath.size())
+        bool boundaryOk  = (locPath == "/")
+                        || (uri.size() == locPath.size())
                         || (uri[locPath.size()] == '/');
 
         if (prefixMatch && boundaryOk)
@@ -43,7 +44,7 @@ RouteDecision Router::route(const HttpRequest& req) const
             {
                 bestLen = locPath.size();
                 found   = true;
-
+                best.locationPath = locPath;//store the matched location path in the RouteDecision for later use by Handler
                 // Fill from location — fall back to server root if location has none
                 best.root = loc.root.empty() ? servConfig->root : loc.root;
 
